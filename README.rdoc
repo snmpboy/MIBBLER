@@ -1,15 +1,15 @@
 = MIBBLER  -- A wrapper for MIBBLE.jar http://www.mibble.org
 
-== Summary
+== Summary:
 
 MIBBLER is a Jruby wrapper around mibble.jar.  It allows for parsing a mib, loading other mibs, and is meant to be used with Mark Cotner's SNMP4J.  It has one class, Loaded_mibs.  Accroding to the Mibble documentation MibLoader is not thread safe, therefore, create one instance and use that instance throughout your code.
 
-=== Features
+=== Features:
 * Use Ruby scripts to take advantage of Mibble's compile Java code.
 * Parse a mib to get OID's matched with their human readable values.
 * Load more mibs.  By default it uses /usr/share/mibs but you may change the directory.
 
-=== Usage
+=== Usage:
 The example is a modified example from SNMP4JR
 
 #!/usr/bin/env jruby
