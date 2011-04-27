@@ -29,7 +29,7 @@ end
 class Loaded_mibs
   attr_accessor :mibs
 
-  def initialize(dir)
+  def initialize(dir='/usr/share/mibs')
     @mibs = []
     @dir = dir
     dir = JavaIO::File.new(dir)
@@ -63,7 +63,7 @@ class Loaded_mibs
           |m|
           if instance =  m.getSymbol(symbol)
             oid = extractoid(instance)
-            oids << oid
+            oids << oid.to_s
             break
           end
         end
