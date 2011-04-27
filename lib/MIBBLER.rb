@@ -26,7 +26,6 @@ module JavaArray
   include_package "java.util"
 end
 
-
 class Loaded_mibs
   attr_accessor :mibs
 
@@ -45,19 +44,26 @@ class Loaded_mibs
 
   def parse_mib(file)
     mib = @loader.getMib(file)
+    if mib == nil
+      raise "No such mib loaded please load the mib!"
+    end
     vpairs = extractoids(mib)
     return vpairs
   end
+
+  def load_mib(mib)
+    @mibs << @loader.load(mib)
+  end
   
-    def get_oid(*symbols)
+  def get_oid(*symbols)
       oids = []
       symbols.each do
         |symbol|
         @mibs.each do
           |m|
-          if instance = m.getSymbol(symbol)
-            oid = instance.getValue
-            oids << oid if oid.instance_of?(MIBBLER::Value::ObjectIdentifierValue)
+          if instance =  m.getSymbol(symbol)
+            oid = extractoid(instance)
+            oids << oid
             break
           end
         end
@@ -71,9 +77,9 @@ class Loaded_mibs
         return oids
       end
     end
-
- private
-   def extractoids( mib )
+    
+  private
+  def extractoids( mib )
     iter = mib.getAllSymbols.iterator
     hash = Hash.new
     while (iter.hasNext)
