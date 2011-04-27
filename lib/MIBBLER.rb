@@ -1,7 +1,6 @@
 #!/usr/bin/env jruby
 
 require 'java'
-require '/usr/share/java/mibble-mibs-2.9.2.jar'
 require '/usr/share/java/mibble-parser-2.9.2.jar'
 
 module MIBBLER
