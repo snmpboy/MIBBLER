@@ -12,24 +12,24 @@ MIBBLER is a Jruby wrapper around mibble.jar.  It allows for parsing a mib, load
 === Usage:
 The example is a modified example from SNMP4JR
 
-#!/usr/bin/env jruby
+  #!/usr/bin/env jruby
 
-require 'rubygems'
-require 'SNMP4JR'
-require 'MIBBLER'
+  require 'rubygems'
+  require 'SNMP4JR'
+  require 'MIBBLER'
 
-# This defaults to version 2c bulkwalk(most efficient method) unless you specify version1
+  # This defaults to version 2c bulkwalk(most efficient method) unless you specify version1
 
-# Create an instance of Loaded_mibs to manipulate the Mibs. Public methods are: parse_mib, load_mib, and get_oid
+  # Create an instance of Loaded_mibs to manipulate the Mibs. Public methods are: parse_mib, load_mib, and get_oid
 
-mymibs = Loaded_mibs.new
-oids = mymibs.get_oid('dot1dBasePort', 'sysDescr')
+  mymibs = Loaded_mibs.new
+  oids = mymibs.get_oid('dot1dBasePort', 'sysDescr')
 
-target = SNMPTarget.new(:host => '<switch-ip-address>', :community => 'public',
-                        :version => SNMP4JR::MP::Version2c)
-target.max_repetitions = 1
-target.non_repeaters = 2
+  target = SNMPTarget.new(:host => '<switch-ip-address>', :community => 'public',
+                          :version => SNMP4JR::MP::Version2c)
+  target.max_repetitions = 1
+  target.non_repeaters = 2
 
- target.get_bulk(oids).each do |vb|
-   puts vb.to_s
-end
+  target.get_bulk(oids).each do |vb|
+    puts vb.to_s
+  end
